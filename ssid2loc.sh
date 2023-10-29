@@ -1,11 +1,13 @@
 #!/bin/bash
 APIKEY=WIGLE_API_KEY_HERE
 #Accepts SSID Name as first parameter
+#need to accomodate spaces
+#need to notify on api limit reached
 a="$1"
 
 if [ ! -f locs/"$a".location ]
 then
-	echo File doesnt exsist
+	echo File doesnt exist
 curl -s -H 'Accept:application/json' -u $APIKEY --basic https://api.wigle.net/api/v2/network/search?ssid="$a" -o locs/"$a".location    
 
 #else

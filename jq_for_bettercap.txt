@@ -29,7 +29,14 @@ jq -r '.[] |  select( .tag=="wifi.client.probe") | select( .data.vendor | . == "
 
 ##1.Query timestamps with multiple probe requests and no vendor. 2. assign Burst identification number. 3. Count total number of SSID's. 4. output to json
 
- for d2 in `cat bettercap.json | ./burst.sh`; do jq --arg d2 "$d2" '.[] | select(.time | startswith($d2)) |   select( .data.vendor | . == "") | .data' bettercap.json ; done | jq  -n '[inputs] | to_entries | group_by(.value.mac) | map({id: ("burst" + (.[0].key + 1 | tostring)), mac: .[0].value.mac, essids: map(.value.essid), essid_count: map(.value.essid) | length})' | jq 'group_by(.id) | map({id: .[0].id, data: [.[] | {essid_count, mac: {mac}, essids}]})'
+# for d2 in `cat bettercap.json | ./burst.sh`; do jq --arg d2 "$d2" '.[] | select(.time | startswith($d2)) |   select( .data.vendor | . == "") | .data' bettercap.json ; done | jq  -n '[inputs] | to_entries | group_by(.value.mac) | map({id: ("burst" + (.[0].key + 1 | tostring)), mac: .[0].value.mac, essids: map(.value.essid), essid_count: map(.value.essid) | length})' | jq 'group_by(.id) | map({id: .[0].id, data: [.[] | {essid_count, mac: {mac}, essids}]})'
+
+
+#slightly better - need to turn many curls into 1. --need to filter out burst of 1 essid and null essids
+
+for d2 in `curl -s http://127.0.0.1:8081/api/events | ./burst.sh`; do  curl -s http://127.0.0.1:8081/api/events | jq --arg d2 "$d2" '.[] | select(.time | startswith($d2)) |   select( .data.vendor | . == "") | .data' ; done  | jq  -n '[inputs] | to_entries | group_by(.value.mac) | map({id: ("burst" + (.[0].key + 1 | tostring)), mac: .[0].value.mac, essids: map(.value.essid), essid_count: map(.value.essid) | length})' | jq 'group_by(.id) | map({id: .[0].id, data: [.[] | {essid_count, mac: {mac}, essids}]})'
+
+
 
 ## Find Duration of bursts
 ...

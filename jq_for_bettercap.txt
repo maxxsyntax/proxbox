@@ -1,8 +1,7 @@
 #Oct 25 2023
 #Pull most recent SSID and RSSI 
 
-curl -s http://127.0.0.1:8081/api/events | jq -cj '.[-1] | select (.tag=="wifi.client.probe") |  {Name: .data.essid?, Signal: .data.rssi?}'
-
+curl -s http://127.0.0.1:8081/api/events | jq -cj '.[] | select (.tag=="wifi.client.probe")' | jq -cjs '.[-1,-2] |  {Name: .data.essid?, Signal: .data.rssi?}'
 #Query most recent Vendor 
 
 curl -s http://127.0.0.1:8081/api/events | jq -crj '.[-1] | select (.tag=="wifi.client.probe") |  {Vendor: .data.vendor?}'

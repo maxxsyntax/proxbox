@@ -6,5 +6,7 @@ A project, for fun, written in shell scripts and jq to query the bettercap api.
 
 ## Assumptions
 Randomized Mac does not coincide with a known Vendor OUI
+
 BLE MAC's are not randomized
+
 Devices burst equally on each channel

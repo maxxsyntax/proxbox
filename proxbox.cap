@@ -1,0 +1,14 @@
+#Bettercap Caplet  https://www.bettercap.org/modules/core/caplets/
+#place in /usr/local/share/bettercap/caplets/proxbox.cap
+#set events.stream.output /tmp/log
+events.ignore wifi.client.lost
+events.ignore wifi.client.new
+events.ignore wifi.ap.new
+events.ignore wifi.ap.lost
+events.ignore ble.device.lost
+events.ignore wifi.deauthentication
+events.ignore sys.log
+wifi.recon on
+ble.recon on
+events.stream on
+

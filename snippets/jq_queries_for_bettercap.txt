@@ -21,8 +21,7 @@ curl -s http://127.0.0.1:8081/api/events | jq -r '.[-1] | select (.tag=="wifi.cl
 ##Works better with prerecorded output from bettercap api 
 ##1. pull timestamps, 2. cut to nearest second, 3. sort ant print number of probe requests in that second, with awk. 4. find seconds with more than one probe requests. 5 only output the date
 ## put following into burst.sh
-
-jq -r '.[] |  select( .tag=="wifi.client.probe") | select( .data.vendor | . == "") | .time'  | cut -d\. -f1 | sort | uniq -c | sort -nr | awk '{print "{\"quantity\": \"" $1 "\", \"date\": \"" $2 "\"}"}' | jq -s . | jq '.[] | select(.quantity > "1")' | jq -r .date 
+#jq -r '.[] |  select( .tag=="wifi.client.probe") | select( .data.vendor | . == "") | .time'  | cut -d\. -f1 | sort | uniq -c | sort -nr | awk '{print "{\"quantity\": \"" $1 "\", \"date\": \"" $2 "\"}"}' | jq -s . | jq '.[] | select(.quantity > "1")' | jq -r .date 
 
 
 

@@ -25,7 +25,7 @@ probe_requests = {}
 
 while True:
     # Sniff for probe requests for 1 second
-    scapy.sniff(iface="wlan1mon", prn=lambda pkt: process_probe_request(pkt, probe_requests), timeout=1)
+    scapy.sniff(iface="wlan0mon", prn=lambda pkt: process_probe_request(pkt, probe_requests), timeout=1)
 
     for source_address, data in probe_requests.items():
         if len(data['ssids']) > 0:

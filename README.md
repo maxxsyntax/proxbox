@@ -4,7 +4,6 @@ Probe Requets correlation with RSSI, proximity, geolocation, and burst level cha
 
 A project, for fun, written in shell scripts and jq to query the bettercap api. 
 
-##Links
 
 
 https://www.researchgate.net/figure/The-difference-between-the-clusters-and-the-devices-is-shown-in-the-left-graph-The_fig1_367065691

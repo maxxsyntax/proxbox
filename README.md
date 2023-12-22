@@ -25,17 +25,17 @@ BLE MAC's are not randomized
 
 Devices burst equally on each channel
 
-## ToDo
-Sort by SIgnal Strength
+~~## ToDo~~  Moved to Issues
+~~Sort by SIgnal Strength~~
 
-location for closet PR, BLE device type OR  burst/ triangulation possible
+~~location for closet PR, BLE device type OR  burst/ triangulation possible~~
 
-ssid2locs: allow spaces in essid
+~~ssid2locs: allow spaces in essid~~
 
-ssid2locs: notifiy on api limits reached
+~~ssid2locs: notifiy on api limits reached~~
 
-fix bug in burst flow: too many pr's sometimes
+~~fix bug in burst flow: too many pr's sometimes~~
 
-make burst flow more efficent
+~~make burst flow more efficent~~
 
-quick and easy output display
+~~quick and easy output display~~

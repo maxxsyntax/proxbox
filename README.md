@@ -26,6 +26,7 @@ BLE MAC's are not randomized
 Devices burst equally on each channel
 
 ~~## ToDo~~  Moved to Issues
+
 ~~Sort by SIgnal Strength~~
 
 ~~location for closet PR, BLE device type OR  burst/ triangulation possible~~

@@ -1,24 +1,4 @@
-#!/bin/bash
-#first line
-
-curl -s http://127.0.0.1:8081/api/events | jq -cj '.[-1] | select (.tag=="wifi.client.probe") |  {Name: .data.essid?, Signal: .data.rssi?}'
-
-
-echo ""
-#2nd line; 
-#wifi.vendor or burst id
-curl -s http://127.0.0.1:8081/api/events | jq -crj '.[-1] | select (.tag=="wifi.client.probe") |  {Vendor: .data.vendor?}'
-
-
-
-
-
-
-echo ""
-#3rd line;
-#city or ble device
-##!/bin/bash
-curl -s http://127.0.0.1:8081/api/events | jq -cj '.[-1] | select (.tag=="ble.device.new") |  {Name: .data.name?, Vendor: .data.vendor?}'
-
-# ssid 2 city
-curl -s http://127.0.0.1:8081/api/events | jq -r '.[-1] | select (.tag=="wifi.client.probe") | [.data.essid] | @tsv' | while IFS=$'\t' read -r essid; do ./ssid2loc.sh "$essid"; done | sort | uniq -c | sort -nr | cut -d\" -f2 | head -n3
+#strongest 3 in last minute, tune to 18 for seconds
+# Probe Requests
+#
+while true; do x=`date +%Y-%m-%dT%H:%M:%S` && y=${x:0:16}; curl -s http://127.0.0.1:8081/api/events  | jq --arg y $y '.[] | select(.time | startswith ($y))' |  jq   -s '.[] | select(.tag=="wifi.client.probe")' | jq -s 'sort_by(.data.rssi) | .[-3:]' | jq -r '.[] | "\(.data.essid), \(.data.rssi), \(.data.vendor)"'; sleep 10; clear; done | grep -v '\[\]'

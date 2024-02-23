@@ -1,7 +1,8 @@
+#!/usr/bin/python
 #need for ssid2city-LocalWigle
 import sys
 from geopy.geocoders import Nominatim
-
+#print("Hello from Python script!")
 def reverse_geocode_coordinates(latitude, longitude):
     geolocator = Nominatim(user_agent="reverse_geocode_script")
     location = geolocator.reverse((latitude, longitude), language='en')
@@ -10,7 +11,7 @@ def reverse_geocode_coordinates(latitude, longitude):
 if __name__ == "__main__":
     # Check if the correct number of command line arguments is provided
     if len(sys.argv) != 3:
-        print("Usage: python script.py <latitude> <longitude>")
+#        print("Usage: python script.py <latitude> <longitude>")
         sys.exit(1)
 
     # Parse command line arguments as floats
@@ -25,5 +26,5 @@ if __name__ == "__main__":
     result = reverse_geocode_coordinates(latitude, longitude)
 
     # Print the result
-   # print("Reverse Geocoding Result:")
+#    print("Reverse Geocoding Result:")
     print(result)

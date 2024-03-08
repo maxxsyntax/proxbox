@@ -7,11 +7,11 @@ PS1='$'
 
 #get list of probe requests
 curl -s http://127.0.0.1:8081/api/events | jq '.[]'  | jq -s '.[] | select(.tag=="wifi.client.probe") .data' | jq -r '.essid' | sort -u | while read line ; do
- python screen_3/r_geocode.py `grep -a -m1 "$line" wigle.csv | cut -d, -f 8-10| grep -Po '[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)' | tr \, \ ` 
+ python3 window_3/r_geocode.py `grep -a -m1 "$line" wigle.csv | cut -d, -f 8-10| grep -Po '[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)' | tr \, \ ` 
 echo -n $line \| \ 
 
 
-./screen_3/ssid2loc-wigle.sh "$line"
+./window_3/ssid2loc-wigle.sh "$line"
 #./ssid2loc3.sh "$line"
 done
 

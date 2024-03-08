@@ -35,15 +35,15 @@ tmux split-window -v -t mysession:0
 # Select the first pane and start ping in it
 tmux split-window -h -t mysession:0.0
 
-tmux send-keys -t mysession:0.0 './screen_1/1stline.sh' C-m
+tmux send-keys -t mysession:0.0 './window_1/1stline.sh' C-m
 
 # Select the second pane and start ping in it
 tmux select-pane -t mysession:0.1
-tmux send-keys './screen_2/2ndline.sh' C-m
+tmux send-keys './window_2/2ndline.sh' C-m
 
 # Select the third pane and start ping in it
 tmux select-pane -t mysession:0.2
-tmux send-keys "./screen_3/3rdline.sh $path" C-m
+tmux send-keys "./window_3/3rdline.sh $path" C-m
 
 # Attach to the session
 tmux attach-session -t mysession

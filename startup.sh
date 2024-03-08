@@ -1,14 +1,25 @@
+<<<<<<< HEAD
 echo -n project name?\ 
 read pj
 echo -n interface name?\ 
+=======
+echo -n project name?
+read pj
+echo -n interface name?
+>>>>>>> fcfd75fa133561da70db0fbe65e27a8fdc1238dd
 read int
 #path="${PWD}/caps/$pj"
 path="./caps/$pj"
 mkdir -p $path
 chgrp tcpdump $path
 screen -S tcpdump.$pj -d -m bash -c "sleep 1; tcpdump -nni $int -w $path/$pj.pcap; sleep 41"
+<<<<<<< HEAD
 screen -S airodump.$pj -d -m bash -c "airodump-ng -c 1,6,11 -t wep -w $path/$pj $int; sleep 40"
 #screen -S airodump.$pj -d -m bash -c "airodump-ng -t wep -w $path/$pj $int; sleep 40"
+=======
+#screen -S airodump.$pj -d -m bash -c "airodump-ng -c 6 -t wep -w $path/$pj $int; sleep 40"
+screen -S airodump.$pj -d -m bash -c "airodump-ng -t wep -w $path/$pj $int; sleep 40"
+>>>>>>> fcfd75fa133561da70db0fbe65e27a8fdc1238dd
 
 #screen -S bettercap.$pj -d -m bash -c "bettercap -eval 'proxbox; wifi.recon.channel 6; api.rest on' -iface $int; sleep 40" 
 screen -S bettercap.$pj -d -m bash -c "bettercap -eval 'proxbox;  api.rest on' -iface $int; sleep 40"

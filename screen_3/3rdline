@@ -1,2 +1,0 @@
-for a in `curl -s http://127.0.0.1:8081/api/events | jq '.[]'  | jq -s '.[] | select(.tag=="wifi.client.probe") .data' | jq -r '.essid' | sort -u`; do echo -n $a \ ; ./ssid2city-LocalWigle.sh "$a" ; sleep 1; clear; done
-

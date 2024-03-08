@@ -1,5 +1,6 @@
 #Bettercap Caplet  https://www.bettercap.org/modules/core/caplets/
-#place in /usr/local/share/bettercap/caplets/proxbox.cap
+#place in /usr/local/share/bettercap/caplets/proxbox.cap - debian
+#or /usr/share/bettercap/caplets/ - kali
 #set events.stream.output /tmp/log
 events.ignore wifi.client.lost
 events.ignore wifi.client.new
